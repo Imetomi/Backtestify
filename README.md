@@ -17,7 +17,7 @@ The drawback of the accurate trading simulation is that currently you can only h
 4. Plotting strategy results and account balance history.
 5. Buy on ASK price, sell on BID price to avoid accidental fake profit.
 
-![Backtest Result](https://github.com/Imetomi/Backtestify/blob/master/data/plot.png)
+![Backtest Result](https://github.com/Imetomi/Backtestify/blob/master/data/plot.PNG)
 
 ## Example code
 
