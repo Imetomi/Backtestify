@@ -10,7 +10,7 @@ I am building this library alone so development takes time.
 
 ## Implemented Features 
 
-1. Placing long and short postiions in a simple way.
+1. Placing long and short positions in a simple way.
 2. Take profit and stop loss.
 3. Leverage
 4. Plotting strategy results and account balance history.
