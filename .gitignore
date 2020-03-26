@@ -2,3 +2,4 @@
 *.html
 .vscode
 __pycache__
+*.json
