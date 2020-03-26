@@ -24,5 +24,5 @@ Check out **strategy.py**.
 
 ## TODOs
 
-Right now I'm working on scraping more real data from the web. The program is optimized for the forex trading which means that you can't apply this program to you preferred instrument.
+Right now I'm working on scraping more real data from the web. The program is optimized for the forex trading which means that PIP calculation may run into problems with other instruments.
 
