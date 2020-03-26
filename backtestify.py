@@ -107,7 +107,7 @@ class Backtest:
 							self.current_trade[3], self.current_trade[0], row['AskClose'],
 							self.current_profit / ((1 / row['AskClose']) * (self.current_trade[2] / 10000)),
 							self.current_profit, self.balance]
-		
+	
 		self.ongoing_trade = False
 		
 		if self.current_profit > 0:

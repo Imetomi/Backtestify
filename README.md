@@ -4,10 +4,9 @@ A simple backtest library to simulate real world trading.
 
 ## About this Project
 
-**Backtestify** takes spread into account while simulating your strategy. Most of the backtesting libraries out there tend to generate false profit caused by the lack of spread when placing and closing a market order. **Backtestify** uses real historical data from **Oanda.com** with correct difference between ask and bid price.
-The drawback of the accurate trading simulation is that currently you can only have one open position which makes sense when you only use one instrument. I am building this library alone so development takes time.
-
-
+**Backtestify** takes spread into account while simulating your strategy. Most of the backtesting libraries out there tend to generate false profit caused by the lack of spread when placing and closing a market order. **Backtestify** uses real historical data from **Oanda.com** with correct difference between the ask and bid price.
+The drawback of the accurate trading simulation is that currently you can only have one open position but this makes sense when you only use one instrument. 
+I am building this library alone so development takes time.
 
 ## Implemented Features 
 
@@ -21,5 +20,9 @@ The drawback of the accurate trading simulation is that currently you can only h
 
 ## Example code
 
-Check out 'strategy.py'.
+Check out **strategy.py**.
+
+## TODOs
+
+Right now I'm working on scraping more real data from the web. The program is optimized for the forex trading which means that you can't apply this program to you preferred instrument.
 
