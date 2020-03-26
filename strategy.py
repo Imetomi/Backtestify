@@ -5,24 +5,41 @@ import random
 
 def strategy(self, row):
     if not self.ongoing_trade and len(self.hist) == 24:
-        # Check if previous day's price was higher or lower.
-        # If it's lower it means that today the price is low so we buy.
         
+        # very simple "strategy", we buy and sell based on what happened a day before. 
         if self.hist[23] - self.hist[0] > 0:
+            # buy on the actual price
             self.buy(row)
         else:
+            # sell on the actual price
             self.sell(row)
 
+        # empty the list for the next 24 hourss
         self.hist = []
     else:
+        # a variable to store records for our strategy
         self.hist.append(row['AskClose'])      
 
+    # after a day close the open positions
     if self.ongoing_trade:
         if row['index'] % 24 == 0:
+            # close the trade
             self.close(row)
 
-
+# read the date (1H resolution)
 data = pd.read_csv('data/eurusd.csv')
-backtest = Backtest(strategy, data, datetime(2017, 1, 2), datetime(2019, 1, 14), verbose=True,
-                    stop_loss=10, take_profit=10)
+
+# initialize backtest
+backtest = Backtest(strategy, data, datetime(2018, 1, 2), datetime(2019, 1, 2), verbose=True,
+                    stop_loss=10, # stop losses at 10 pip
+                    take_profit=10 # take profit at 10 pip
+                    )
+
+# run and test the algorithm
 backtest.run()
+
+# optionally save the trades in a CSV file 
+backtest.trade_list.to_csv("trades.csv")
+
+# create a plot of the account balance
+backtest.plot()
