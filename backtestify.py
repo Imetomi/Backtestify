@@ -67,7 +67,7 @@ class Backtest:
 			units = margin * self.leverage
 			if units > self.max_units:
 				units = self.max_units
-			self.current_trade = [row['AskClose'], 'BUY', units, margin, row['Date'] + ' ' + str(row[self.resolution])]
+			self.current_trade = [row['AskOpen'], 'BUY', units, margin, row['Date'] + ' ' + str(row[self.resolution])]
 			self.ongoing_trade = True
 			return True
 	
@@ -81,7 +81,7 @@ class Backtest:
 			units = margin * self.leverage
 			if units > self.max_units:
 				units = self.max_units
-			self.current_trade = [row['BidClose'], 'SELL', units, margin, row['Date'] + ' ' + str(row[self.resolution])]
+			self.current_trade = [row['BidOpen'], 'SELL', units, margin, row['Date'] + ' ' + str(row[self.resolution])]
 			self.ongoing_trade = True
 			return True
 	
@@ -97,15 +97,15 @@ class Backtest:
 		if self.current_trade[1] == 'BUY':
 			self.trade_list.loc[len(self.trade_list)] = [self.current_trade[1], self.current_trade[4], 
 							row['Date']+ ' ' + str(row[self.resolution]), self.current_trade[2], 
-							self.current_trade[3], self.current_trade[0], row['BidClose'], 
-							self.current_profit / ((1 / row['BidClose']) * (self.current_trade[2] / 10000)),
+							self.current_trade[3], self.current_trade[0], row['BidOpen'], 
+							self.current_profit / ((1 / row['BidOpen']) * (self.current_trade[2] / 10000)),
 							self.current_profit, self.balance]
 			
 		else:
 			self.trade_list.loc[len(self.trade_list)] = [self.current_trade[1], self.current_trade[4], 
 							row['Date']+ ' ' + str(row[self.resolution]), self.current_trade[2], 
-							self.current_trade[3], self.current_trade[0], row['AskClose'],
-							self.current_profit / ((1 / row['AskClose']) * (self.current_trade[2] / 10000)),
+							self.current_trade[3], self.current_trade[0], row['AskOpen'],
+							self.current_profit / ((1 / row['AskOpen']) * (self.current_trade[2] / 10000)),
 							self.current_profit, self.balance]
 	
 		self.ongoing_trade = False
@@ -123,17 +123,17 @@ class Backtest:
 	
 	def calc_profit(self, row):
 		if self.current_trade[1] == 'BUY':
-			return (row['BidClose'] - self.current_trade[0]) * (1 / row['BidClose']) * self.current_trade[2]
+			return (row['BidOpen'] - self.current_trade[0]) * (1 / row['BidOpen']) * self.current_trade[2]
 		elif self.current_trade[1] == 'SELL':
-			return (self.current_trade[0] - row['AskClose']) * (1 / row['AskClose']) * self.current_trade[2]
+			return (self.current_trade[0] - row['AskOpen']) * (1 / row['AskOpen']) * self.current_trade[2]
 		else:
 			return 0
    
 	def calc_pip(self, row):
 		if self.current_trade[1] == 'BUY':
-			return self.current_profit / ((1 / row['BidClose']) * (self.current_trade[2] / 10000))
+			return self.current_profit / ((1 / row['BidOpen']) * (self.current_trade[2] / 10000))
 		elif self.current_trade[1] == 'SELL':
-			return self.current_profit / ((1 / row['AskClose']) * (self.current_trade[2] / 10000))
+			return self.current_profit / ((1 / row['AskOpen']) * (self.current_trade[2] / 10000))
 		else:
 			return 0
 	
