@@ -1,0 +1,6 @@
+*.zip
+*.html
+.vscode
+__pycache__
+*.json
+*.pyc 
