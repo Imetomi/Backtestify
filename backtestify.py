@@ -218,4 +218,4 @@ class Backtest:
 			print("No data to plot!")
 
 	def save_results(self, name='trades.csv'):
-		self.TradeLog.to_csv("trades.csv", index=False)
+		self.TradeLog.to_csv(name, index=False)

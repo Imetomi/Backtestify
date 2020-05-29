@@ -20,7 +20,7 @@ def strategy(self, row, i):
 backtest = Backtest(strategy, data, datetime(2018, 1, 2), datetime(2019, 1, 2), leverage=50, balance=1000)
 backtest.add_ema(21)
 backtest.add_ema(50)
-backtest.save_results()
 
 backtest.run()
+backtest.save_results()
 backtest.plot()

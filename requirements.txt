@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 plotly
 chart_studio
 pandas
 numpy
-=======
-plotly
-chart_studio
-pandas
-numpy
->>>>>>> 5556617fa25352b1f608f76ade8de667539868b8
