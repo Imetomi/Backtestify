@@ -1,0 +1,4 @@
+plotly
+chart_studio
+pandas
+numpy
