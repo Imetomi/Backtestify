@@ -2,3 +2,5 @@ plotly
 chart_studio
 pandas
 numpy
+tqdm
+numpy

@@ -3,24 +3,30 @@ from datetime import datetime
 import pandas as pd
 import random
 
+instrument = 'eurusd'
+direct = True
+data = pd.read_csv('data/' + instrument + '.csv')
 
-ins = 'eurusd'
-data = pd.read_csv('data/eurusd.csv')
+fast = 'MA21'
+slow = 'EMA50'
+leverage = 30
+SL = 1
+TP = 1
+starting_date = datetime(2019, 1, 4)
+ending_date = datetime(2019, 7, 2)
 
 
 def strategy(self, row, i):
-    if self.Data['EMA21'][i] > self.Data['EMA50'][i] and self.Data['EMA21'][i-1] < self.Data['EMA50'][i-1]:
-        self.close_all(row)
-        self.buy(row, ins, 0.8, self.Balance * 0.03, self.Balance * 0.01)
-    elif self.Data['EMA21'][i] < self.Data['EMA50'][i] and self.Data['EMA21'][i-1] > self.Data['EMA50'][i-1]:
-        self.close_all(row)
-        self.sell(row, ins, 0.8, self.Balance * 0.03, self.Balance * 0.01)
+	if self.Data[fast][i] > self.Data[slow][i] and self.Data[fast][i-1] < self.Data[slow][i-1]:
+		self.close_all(row)
+		self.buy(row, instrument, 1, SL * self.Balance, TP * self.Balance)
+	elif self.Data[fast][i] < self.Data[slow][i] and self.Data[fast][i-1] > self.Data[slow][i-1]:
+		self.close_all(row)
+		self.sell(row, instrument, 1,  SL * self.Balance, TP * self.Balance)
 
 
-backtest = Backtest(strategy, data, datetime(2018, 1, 2), datetime(2019, 1, 2), leverage=50, balance=1000)
-backtest.add_ema(21)
+backtest = Backtest(strategy, data, starting_date, ending_date, leverage=leverage, balance=10000, direct=direct, ddw=10)
+backtest.add_ma(21)
 backtest.add_ema(50)
-
 backtest.run()
-backtest.save_results()
-backtest.plot()
+backtest.plot_results()
