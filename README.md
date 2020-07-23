@@ -17,7 +17,7 @@ I am building this library alone so development takes time.
 6. Monte Carlo simulations based on your strategy's performance.
 7. Benchmarking your strategy with SPY, DAX, and DJA.
 
-![Backtest Result](https://github.com/Imetomi/Backtestify/blob/master/data/plot.PNG)
+![Backtest Result](https://github.com/Imetomi/Backtestify/blob/master/data/plot.png)
 
 ## Example code
 
